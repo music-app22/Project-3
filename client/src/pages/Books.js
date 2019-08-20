@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../components/Grid";
 import { List, ListItem } from "../components/List";
 import { Input, TextArea, FormBtn } from "../components/Form";
+import "./books.css"
 
 class Books extends Component {
   state = {
@@ -61,7 +62,10 @@ class Books extends Component {
             <Jumbotron>
               <h1>Play Random Song</h1>
             </Jumbotron>
-            <form>
+            
+            {/* below i commented out the code that created the way you enter the books on the list */}
+            
+            {/* <form>
               <Input
                 value={this.state.title}
                 onChange={this.handleInputChange}
@@ -86,11 +90,13 @@ class Books extends Component {
               >
                 Submit Book
               </FormBtn>
-            </form>
+            </form> */}
+
+
           </Col>
           <Col size="md-6 sm-12">
             <Jumbotron>
-              <h1>Books On My List</h1>
+              <h1>Songs I have liked</h1>
             </Jumbotron>
             {this.state.books.length ? (
               <List>

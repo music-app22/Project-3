@@ -21,7 +21,7 @@
 }
 
 .list-overflow-container li a {
-  color: #2A878C;
+  color:#2A878C;
 }
 
 .list-overflow-container li:first-child {
@@ -30,4 +30,9 @@
 
 .list-overflow-container li:last-child {
   border-bottom: none;
+}
+
+.list-overflow-container .list-group-item {
+background-color: rgba(255,255,255,0);
+
 }
