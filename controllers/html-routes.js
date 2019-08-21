@@ -35,13 +35,13 @@ module.exports = function(app) {
     res.sendFile(path.join(__dirname, "../public/view.html"));
   });
 
-  // add route loads the add.html page, where users can enter new books to the db
+  // add route loads the add.html page, where users can enter new songs to the db
   app.get("/add", function(req, res) {
     res.sendFile(path.join(__dirname, "../public/add.html"));
     console.log("add");
   });
 
-  // all route loads the all.html page, where all books in the db are displayed
+  // all route loads the all.html page, where all songs in the db are displayed
   app.get("/all", function(req, res) {
     res.sendFile(path.join(__dirname, "../public/all.html"));
     console.log("all");

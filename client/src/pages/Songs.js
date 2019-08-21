@@ -6,31 +6,31 @@ import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../components/Grid";
 import { List, ListItem } from "../components/List";
 import { Input, TextArea, FormBtn } from "../components/Form";
-import "./books.css"
+import "./songs.css"
 
-class Books extends Component {
+class Songs extends Component {
   state = {
-    books: [],
+    songs: [],
     title: "",
-    author: "",
+    artist: "",
     synopsis: ""
   };
 
   componentDidMount() {
-    this.loadBooks();
+    this.loadSongs();
   }
 
-  loadBooks = () => {
-    API.getBooks()
+  loadSongs = () => {
+    API.getSongs()
       .then(res =>
-        this.setState({ books: res.data, title: "", author: "", synopsis: "" })
+        this.setState({ songs: res.data, title: "", artist: "", synopsis: "" })
       )
       .catch(err => console.log(err));
   };
 
-  deleteBook = id => {
-    API.deleteBook(id)
-      .then(res => this.loadBooks())
+  deleteSong = id => {
+    API.deleteSong(id)
+      .then(res => this.loadSongs())
       .catch(err => console.log(err));
   };
 
@@ -43,13 +43,13 @@ class Books extends Component {
 
   handleFormSubmit = event => {
     event.preventDefault();
-    if (this.state.title && this.state.author) {
-      API.saveBook({
+    if (this.state.title && this.state.artist) {
+      API.saveSong({
         title: this.state.title,
-        author: this.state.author,
+        artist: this.state.artist,
         synopsis: this.state.synopsis
       })
-        .then(res => this.loadBooks())
+        .then(res => this.loadSongs())
         .catch(err => console.log(err));
     }
   };
@@ -60,10 +60,11 @@ class Books extends Component {
         <Row>
           <Col size="md-6">
             <Jumbotron>
-              <h1>Play Random Song</h1>
+            <iframe src="https://open.spotify.com/embed/album/1iUJzSmlrjdw3XhR1M0A2O" width="300" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+              
             </Jumbotron>
             {/*  ---------------------------------------------------------------------------------------------------------------*/}
-            {/* below i commented out the code that created the way you enter the books on the list */}
+            {/* below i commented out the code that created the way you enter the songs on the list */}
             
             <form>
               <Input
@@ -73,9 +74,9 @@ class Books extends Component {
                 placeholder="Song Title (required)"
               />
               <Input
-                value={this.state.author}
+                value={this.state.artist}
                 onChange={this.handleInputChange}
-                name="author"
+                name="artist"
                 placeholder="Artist (required)"
               />
               {/* <TextArea
@@ -85,7 +86,7 @@ class Books extends Component {
                 placeholder="Synopsis (Optional)"
               /> */}
               <FormBtn
-                disabled={!(this.state.author && this.state.title)}
+                disabled={!(this.state.artist && this.state.title)}
                 onClick={this.handleFormSubmit}
               >
                 Search Song
@@ -98,16 +99,16 @@ class Books extends Component {
             <Jumbotron>
               <h1>Songs I have liked</h1>
             </Jumbotron>
-            {this.state.books.length ? (
+            {this.state.songs.length ? (
               <List>
-                {this.state.books.map(book => (
-                  <ListItem key={book._id}>
-                    <Link to={"/books/" + book._id}>
+                {this.state.songs.map(song => (
+                  <ListItem key={song._id}>
+                    <Link to={"/songs/" + song._id}>
                       <strong>
-                        {book.title} by {book.author}
+                        {song.title} by {song.artist}
                       </strong>
                     </Link>
-                    <DeleteBtn onClick={() => this.deleteBook(book._id)} />
+                    <DeleteBtn onClick={() => this.deleteSong(song._id)} />
                   </ListItem>
                 ))}
               </List>
@@ -121,4 +122,4 @@ class Books extends Component {
   }
 }
 
-export default Books;
+export default Songs;
