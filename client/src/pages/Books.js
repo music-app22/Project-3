@@ -62,10 +62,10 @@ class Books extends Component {
             <Jumbotron>
               <h1>Play Random Song</h1>
             </Jumbotron>
-            
+            {/*  ---------------------------------------------------------------------------------------------------------------*/}
             {/* below i commented out the code that created the way you enter the books on the list */}
             
-            {/* <form>
+            <form>
               <Input
                 value={this.state.title}
                 onChange={this.handleInputChange}
@@ -90,9 +90,9 @@ class Books extends Component {
               >
                 Submit Book
               </FormBtn>
-            </form> */}
+            </form>
 
-
+{/* ---------------------------------------------------------------------------------------------------------------------- */}
           </Col>
           <Col size="md-6 sm-12">
             <Jumbotron>
