@@ -5,14 +5,14 @@ import Detail from "./pages/Detail";
 import NoMatch from "./pages/NoMatch";
 import Nav from "./components/Nav";
 import "./App.css";
-
+import HomePage from "./pages/HomePage";
 function App() {
   return (
     <Router>
       <div>
         <Nav />
         <Switch>
-          <Route exact path="/" component={Books} />
+          <Route exact path="/" component={HomePage} />
           <Route exact path="/books" component={Books} />
           <Route exact path="/books/:id" component={Detail} />
           <Route component={NoMatch} />

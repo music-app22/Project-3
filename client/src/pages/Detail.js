@@ -30,12 +30,12 @@ class Detail extends Component {
         </Row>
         <Row>
           <Col size="md-10 md-offset-1">
-            <article>
+            {/* <article>
               <h1>Synopsis</h1>
               <p>
                 {this.state.book.synopsis}
               </p>
-            </article>
+            </article> */}
           </Col>
         </Row>
         <Row>

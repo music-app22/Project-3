@@ -70,25 +70,25 @@ class Books extends Component {
                 value={this.state.title}
                 onChange={this.handleInputChange}
                 name="title"
-                placeholder="Title (required)"
+                placeholder="Song Title (required)"
               />
               <Input
                 value={this.state.author}
                 onChange={this.handleInputChange}
                 name="author"
-                placeholder="Author (required)"
+                placeholder="Artist (required)"
               />
-              <TextArea
+              {/* <TextArea
                 value={this.state.synopsis}
                 onChange={this.handleInputChange}
                 name="synopsis"
                 placeholder="Synopsis (Optional)"
-              />
+              /> */}
               <FormBtn
                 disabled={!(this.state.author && this.state.title)}
                 onClick={this.handleFormSubmit}
               >
-                Submit Book
+                Search Song
               </FormBtn>
             </form>
 
