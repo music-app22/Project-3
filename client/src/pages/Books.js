@@ -92,6 +92,9 @@ class Books extends Component {
               </FormBtn>
             </form>
 
+              <div className="player">
+            <iframe src="https://open.spotify.com/embed/track/1cCXhTHf2lTsLhYCkQc80t" width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+            </div>
 {/* ---------------------------------------------------------------------------------------------------------------------- */}
           </Col>
           <Col size="md-6 sm-12">
