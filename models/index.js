@@ -34,3 +34,6 @@ db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
 module.exports = db;
+module.exports = {
+  Book: require("./book")
+};
