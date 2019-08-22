@@ -8,12 +8,15 @@ import { List, ListItem } from "../components/List";
 import { Input, TextArea, FormBtn } from "../components/Form";
 import "./songs.css"
 
+var Spotify = require('spotify-web-api-js');
+var s = new Spotify();
+
 class Songs extends Component {
   state = {
     songs: [],
     title: "",
-    artist: "",
-    synopsis: ""
+    artist: ""
+    //,synopsis: ""
   };
 
   componentDidMount() {
@@ -60,7 +63,7 @@ class Songs extends Component {
         <Row>
           <Col size="md-6">
             <Jumbotron>
-            <iframe src="https://open.spotify.com/embed/album/1iUJzSmlrjdw3XhR1M0A2O" width="300" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+            <iframe src="https://open.spotify.com/embed/track/1cCXhTHf2lTsLhYCkQc80t" width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
               
             </Jumbotron>
             {/*  ---------------------------------------------------------------------------------------------------------------*/}
