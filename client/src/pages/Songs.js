@@ -15,7 +15,8 @@ class Songs extends Component {
   state = {
     songs: [],
     title: "",
-    artist: ""
+    artist: "",
+    track: "1cCXhTHf2lTsLhYCkQc80t"
     //,synopsis: ""
   };
 
@@ -63,7 +64,7 @@ class Songs extends Component {
         <Row>
           <Col size="md-6">
             <Jumbotron>
-            <iframe src="https://open.spotify.com/embed/track/1cCXhTHf2lTsLhYCkQc80t" width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+            <iframe src={"https://open.spotify.com/embed/track/" + this.state.track} width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
               
             </Jumbotron>
             {/*  ---------------------------------------------------------------------------------------------------------------*/}

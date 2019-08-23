@@ -9,8 +9,8 @@ router.route("/")
 // Matches with "/api/songs/:id"
 router
   .route("/:id")
-  .get(songsController.findById)
-  .put(songsController.update)
-  .delete(songsController.remove);
+    .get(songsController.findById)
+    .put(songsController.update)
+    .delete(songsController.remove);
 
 module.exports = router;
