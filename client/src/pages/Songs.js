@@ -5,11 +5,13 @@ import API from "../utils/API";
 import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../components/Grid";
 import { List, ListItem } from "../components/List";
-import { Input, TextArea, FormBtn } from "../components/Form";
+import { Input, FormBtn } from "../components/Form";
 import "./songs.css"
 
-var Spotify = require('spotify-web-api-js');
-var s = new Spotify();
+
+var Spotify = require('node-spotify-api');
+ 
+
 
 class Songs extends Component {
   state = {
@@ -17,9 +19,8 @@ class Songs extends Component {
     title: "",
     artist: "",
     track: "1cCXhTHf2lTsLhYCkQc80t"
-    //,synopsis: ""
   };
-
+  
   componentDidMount() {
     this.loadSongs();
   }
@@ -27,7 +28,7 @@ class Songs extends Component {
   loadSongs = () => {
     API.getSongs()
       .then(res =>
-        this.setState({ songs: res.data, title: "", artist: "", synopsis: "" })
+        this.setState({ songs: res.data, title: "", artist: "", track: this.state.track })
       )
       .catch(err => console.log(err));
   };
@@ -47,11 +48,12 @@ class Songs extends Component {
 
   handleFormSubmit = event => {
     event.preventDefault();
+    console.log("button clicked");
     if (this.state.title && this.state.artist) {
       API.saveSong({
         title: this.state.title,
         artist: this.state.artist,
-        synopsis: this.state.synopsis
+        track: this.state.track
       })
         .then(res => this.loadSongs())
         .catch(err => console.log(err));
@@ -59,13 +61,13 @@ class Songs extends Component {
   };
 
   render() {
+    
     return (
       <Container fluid>
         <Row>
           <Col size="md-6">
             <Jumbotron>
-            <iframe src={"https://open.spotify.com/embed/track/" + this.state.track} width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
-              
+            
             </Jumbotron>
             {/*  ---------------------------------------------------------------------------------------------------------------*/}
             {/* below i commented out the code that created the way you enter the songs on the list */}
@@ -83,19 +85,20 @@ class Songs extends Component {
                 name="artist"
                 placeholder="Artist (required)"
               />
-              {/* <TextArea
-                value={this.state.synopsis}
-                onChange={this.handleInputChange}
-                name="synopsis"
-                placeholder="Synopsis (Optional)"
-              /> */}
+             
               <FormBtn
                 disabled={!(this.state.artist && this.state.title)}
                 onClick={this.handleFormSubmit}
+                
               >
                 Search Song
               </FormBtn>
             </form>
+
+            <iframe src={"https://open.spotify.com/embed/track/" + this.state.track} width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media" id="player" position="relative"></iframe>
+            <p></p>
+            <button>get random song</button>
+            <button>track id: {this.state.track}</button>t
 
 {/* ---------------------------------------------------------------------------------------------------------------------- */}
           </Col>

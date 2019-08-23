@@ -9,16 +9,16 @@
 
  
 
-
+require("dotenv").config();
 var express = require('express'); // Express web server framework
 var request = require('request'); // "Request" library
 var cors = require('cors');
 var querystring = require('querystring');
 var cookieParser = require('cookie-parser');
 
-var client_id = 'c8c67f5334914c3eb3e4099dd10da1fe'; // Your client id
-var client_secret = '3cb271ced1c148e99bbba497abed0761'; // Your secret
-var redirect_uri = 'http://localhost:8888/callback'; // Your redirect uri
+var client_id = process.env.SPOTIFY_ID; // Your client id
+var client_secret = process.env.SPOTIFY_SECRET; // Your secret
+var redirect_uri = 'http://localhost:8888/callback/'; // Your redirect uri
 
 /**
  * Generates a random string containing numbers and letters
