@@ -24,6 +24,8 @@ function getRandomSearch() {
       // default: 
       // randomSearch = '';
   }
+  console.log("randomCharacter", randomCharacter);
+  console.log("randomSearch", randomSearch);
   console.log("random search");
   return randomSearch;
 }
@@ -48,8 +50,9 @@ module.exports = {
           return;
         }
   
-        var lastIndex = data.tracks.items.length - 1;
-        var song = data.tracks.items[lastIndex];
+        var randIndex = Math.floor(Math.random() * data.tracks.items.length - 1);
+        console.log("randIndex", randIndex);
+        var song = data.tracks.items[randIndex];
         var songID = song.id;
         console.log("new song id: ", songID);
         console.log("song data", song);
@@ -60,13 +63,14 @@ module.exports = {
   // TODO: request specific track
   playSelection: function(req, res) {
     spotify
-    //.request('https://api.spotify.com/v1/tracks/7yCPwWs66K8Ba5lFuU2bcx')
-    .request('https://api.spotify.com/v1/tracks/' + this.state.track)
+    .request('https://api.spotify.com/v1/tracks/' + req.params.track)
     .then(function(data) {
+      res.json(data);
       console.log(data); 
     })
     .catch(function(err) {
       console.error('Error occurred: ' + err); 
+      res.sendStatus(500);
     });
 }
 }
