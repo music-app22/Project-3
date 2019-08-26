@@ -125,9 +125,7 @@ class Songs extends Component {
       <Container fluid>
         <Row>
           <Col size="md-6">
-            <Jumbotron>
-
-            </Jumbotron>
+            
             {/*  ---------------------------------------------------------------------------------------------------------------*/}
             {/* below i commented out the code that created the way you enter the songs on the list */}
 
@@ -157,9 +155,9 @@ class Songs extends Component {
               <iframe title="song player" className="player" src={"https://open.spotify.com/embed/track/" + this.state.track} width="300" height="380" frameBorder="0" allowtransparency="true" allow="encrypted-media" position="relative"></iframe>
             )}
             <p></p>
-            <button title="random song" className="btn btn-default" className="random-song" onClick={this.loadRandomSong}>get new random song</button>
+            <button title="random song" className="random-song" onClick={this.loadRandomSong}>Get new random song</button>
             <p></p>
-            <button onClick={this.handleSaveSong}>add "{this.state.title}" to Liked Songs</button>
+            <button className="like-song" onClick={this.handleSaveSong}>Add to liked songs list</button>
 
 
 

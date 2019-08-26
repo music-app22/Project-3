@@ -1,8 +1,6 @@
 const router = require("express").Router();
 const spotifySongsController = require("../../client/controllers/spotifySongsController");
 
-
-
 router
   .route("/")
   .get(spotifySongsController.findRandom);

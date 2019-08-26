@@ -60,7 +60,7 @@ module.exports = {
       }
     );
   },
-  // TODO: request specific track
+  // request specific track
   playSelection: function(req, res) {
     spotify
     .request('https://api.spotify.com/v1/tracks/' + req.params.track)
