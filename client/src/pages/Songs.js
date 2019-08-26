@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import DeleteBtn from "../components/DeleteBtn";
+import PlayBtn from "../components/PlayBtn";
 import Jumbotron from "../components/Jumbotron";
 import API from "../utils/API";
 import { Link } from "react-router-dom";
@@ -60,6 +61,31 @@ class Songs extends Component {
   deleteSong = id => {
     API.deleteSong(id)
       .then(res => this.loadSongs())
+      .catch(err => console.log(err));
+  };
+
+  // playSong = songData => {
+  //   API.playSong(songData)
+  //     .then(res => this.loadSongs())
+  //     .catch(err => console.log(err));
+  // };
+
+  handleSelectSong = () => {
+    console.log("play selected song:", this.state.title);
+    API.playSelection()
+      .then(res => {
+        this.setState({
+          title: this.state.title,
+          artist: this.state.artist,
+          track: this.state.track
+        })
+        console.log("res id: ", res.data.id);
+        console.log("res artist: ", res.data.artists[0].name);
+        console.log("res song title: ", res.data.name);
+        
+      }
+      )
+
       .catch(err => console.log(err));
   };
 
@@ -152,6 +178,7 @@ class Songs extends Component {
                         {song.title} by {song.artist}
                       </strong>
                     </Link>
+                    <PlayBtn onClick={() => this.handleSelectSong(song._id)} />
                     <DeleteBtn onClick={() => this.deleteSong(song._id)} />
                   </ListItem>
                 ))}

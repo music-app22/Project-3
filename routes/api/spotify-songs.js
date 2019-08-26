@@ -5,6 +5,10 @@ const spotifySongsController = require("../../client/controllers/spotifySongsCon
 // Matches with "/api/spotify-songs/:id"
 router
   .route("/")
-  .get(spotifySongsController.findRandom)
+  .get(spotifySongsController.findRandom);
+
+  router
+  .route("/:track")
+  .get(spotifySongsController.playSelection);
 
 module.exports = router;

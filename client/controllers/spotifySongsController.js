@@ -48,7 +48,7 @@ module.exports = {
           return;
         }
   
-        var lastIndex = data.tracks.items.length - 1
+        var lastIndex = data.tracks.items.length - 1;
         var song = data.tracks.items[lastIndex];
         var songID = song.id;
         console.log("new song id: ", songID);
@@ -56,5 +56,16 @@ module.exports = {
         res.json(song);
       }
     );
-  }
-};
+  },
+  // TODO: request specific track
+  playSelection: function(req, res) {
+    spotify
+    .request('https://api.spotify.com/v1/tracks/7yCPwWs66K8Ba5lFuU2bcx')
+    .then(function(data) {
+      console.log(data); 
+    })
+    .catch(function(err) {
+      console.error('Error occurred: ' + err); 
+    });
+}
+}

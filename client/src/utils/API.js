@@ -17,6 +17,10 @@ export default {
   saveSong: function(songData) {
     return axios.post("/api/songs", songData);
   },
+  //plays selected song in the widget
+  playSelection: function(track) {
+    return axios.get("/api/spotify-songs/" + track);
+  },
   getRandomSong: function() {
     return axios.get("/api/spotify-songs");
   }
