@@ -16,5 +16,10 @@ export default {
   // Saves a song to the database
   saveSong: function(songData) {
     return axios.post("/api/songs", songData);
+  },
+  getRandomSong: function() {
+    return axios.get("/api/spotify-songs");
   }
+
 };
+

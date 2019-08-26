@@ -8,21 +8,24 @@ import { List, ListItem } from "../components/List";
 import { Input, FormBtn } from "../components/Form";
 import "./songs.css"
 
-
-var Spotify = require('node-spotify-api');
- 
-
+// import SpotifyApi from 'node-spotify-api';
+// const spotify = new SpotifyApi(); 
+// var Spotify = require('node-spotify-api');
 
 class Songs extends Component {
   state = {
     songs: [],
     title: "",
     artist: "",
-    track: "1cCXhTHf2lTsLhYCkQc80t"
-  };
-  
+    track: ""
+    // track: "1cCXhTHf2lTsLhYCkQc80t" // MY SONG 
+  }
+
   componentDidMount() {
-    this.loadSongs();
+    //this.loadSongs();
+    this.loadRandomSong();
+    console.log("random song id: ", this.state.track);
+
   }
 
   loadSongs = () => {
@@ -33,46 +36,76 @@ class Songs extends Component {
       .catch(err => console.log(err));
   };
 
+  loadRandomSong = () => {
+    console.log("load random song");
+    API.getRandomSong()
+      .then(res => {
+        this.setState({
+          title: res.data.name,
+          artist: res.data.artists[0].name,
+          track: res.data.id
+        })
+        console.log("res id: ", res.data.id);
+        console.log("res artist: ", res.data.artists[0].name);
+        console.log("res song title: ", res.data.name);
+      }
+      )
+
+      .catch(err => console.log(err));
+  };
+
+
+
+
   deleteSong = id => {
     API.deleteSong(id)
       .then(res => this.loadSongs())
       .catch(err => console.log(err));
   };
 
-  handleInputChange = event => {
-    const { name, value } = event.target;
-    this.setState({
-      [name]: value
-    });
-  };
+  // handleInputChange = event => {
+  //   const { name, value } = event.target;
+  //   this.setState({
+  //     [name]: value
+  //   });
+  // };
 
-  handleFormSubmit = event => {
-    event.preventDefault();
-    console.log("button clicked");
-    if (this.state.title && this.state.artist) {
-      API.saveSong({
-        title: this.state.title,
-        artist: this.state.artist,
-        track: this.state.track
-      })
-        .then(res => this.loadSongs())
-        .catch(err => console.log(err));
-    }
-  };
+  // handleRandomSong = event => {
+  //   API.getRandomSong({
+  //     track: this.state.track
+  //   });
+  // }
+
+  // handleFormSubmit = event => {
+  //   event.preventDefault();
+  //   console.log("submit button clicked");
+
+
+  handleSaveSong = () => {
+    API.saveSong({
+
+      title: this.state.title,
+      artist: this.state.artist,
+      track: this.state.track
+    })
+      .then(res => this.loadSongs())
+      .catch(err => console.log(err));
+  }
+
 
   render() {
-    
+    console.log("my song", this.state.track);
     return (
       <Container fluid>
         <Row>
           <Col size="md-6">
             <Jumbotron>
-            
+
             </Jumbotron>
             {/*  ---------------------------------------------------------------------------------------------------------------*/}
             {/* below i commented out the code that created the way you enter the songs on the list */}
-            
-            <form>
+
+            {/* <form>
               <Input
                 value={this.state.title}
                 onChange={this.handleInputChange}
@@ -93,14 +126,18 @@ class Songs extends Component {
               >
                 Search Song
               </FormBtn>
-            </form>
-
-            <iframe src={"https://open.spotify.com/embed/track/" + this.state.track} width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media" id="player" position="relative"></iframe>
+            </form> */}
+            {this.state.track && (
+              <iframe title="song player" className="player" src={"https://open.spotify.com/embed/track/" + this.state.track} width="300" height="380" frameBorder="0" allowtransparency="true" allow="encrypted-media" position="relative"></iframe>
+            )}
             <p></p>
-            <button>get random song</button>
-            <button>track id: {this.state.track}</button>t
+            <button title="random song" className="btn btn-default" className="random-song" onClick={this.loadRandomSong}>get new random song</button>
+            <p></p>
+            <button onClick={this.handleSaveSong}>add "{this.state.title}" to Liked Songs</button>
 
-{/* ---------------------------------------------------------------------------------------------------------------------- */}
+
+
+            {/* ---------------------------------------------------------------------------------------------------------------------- */}
           </Col>
           <Col size="md-6 sm-12">
             <Jumbotron>
@@ -120,8 +157,8 @@ class Songs extends Component {
                 ))}
               </List>
             ) : (
-              <h3>No Results to Display</h3>
-            )}
+                <h3>No Results to Display</h3>
+              )}
           </Col>
         </Row>
       </Container>

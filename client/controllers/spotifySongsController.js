@@ -21,14 +21,16 @@ function getRandomSearch() {
     case 1:
       randomSearch = '%' + randomCharacter + '%';
       break;
+      // default: 
+      // randomSearch = '';
   }
-
+  console.log("random search");
   return randomSearch;
 }
 
-function getRandomLimit() {
-  return Math.ceil(Math.random() * 100);
-}
+// function getRandomLimit() {
+//   return Math.ceil(Math.random() * 100);
+// }
 
 // Defining methods for the songsController
 module.exports = {
@@ -37,7 +39,8 @@ module.exports = {
       {
         type: "track",
         query: getRandomSearch(),
-        limit: getRandomLimit()
+        limit:  50 // Spotify API's maximum limit is 50
+       //  getRandomLimit()
       },
       function(err, data) {
         if (err) {
@@ -47,7 +50,9 @@ module.exports = {
   
         var lastIndex = data.tracks.items.length - 1
         var song = data.tracks.items[lastIndex];
-        
+        var songID = song.id;
+        console.log("new song id: ", songID);
+        console.log("song data", song);
         res.json(song);
       }
     );
