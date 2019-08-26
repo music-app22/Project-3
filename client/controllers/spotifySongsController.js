@@ -60,7 +60,8 @@ module.exports = {
   // TODO: request specific track
   playSelection: function(req, res) {
     spotify
-    .request('https://api.spotify.com/v1/tracks/7yCPwWs66K8Ba5lFuU2bcx')
+    //.request('https://api.spotify.com/v1/tracks/7yCPwWs66K8Ba5lFuU2bcx')
+    .request('https://api.spotify.com/v1/tracks/' + this.state.track)
     .then(function(data) {
       console.log(data); 
     })

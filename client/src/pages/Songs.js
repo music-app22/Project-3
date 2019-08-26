@@ -71,7 +71,7 @@ class Songs extends Component {
   // };
 
   handleSelectSong = () => {
-    console.log("play selected song:", this.state.title);
+    console.log("play selected song:", this.state.track);
     API.playSelection()
       .then(res => {
         this.setState({
@@ -120,7 +120,7 @@ class Songs extends Component {
 
 
   render() {
-    console.log("my song", this.state.track);
+    this.loadSongs();
     return (
       <Container fluid>
         <Row>
