@@ -23,7 +23,7 @@ class Songs extends Component {
   }
 
   componentDidMount() {
-    //this.loadSongs();
+    this.loadSongs();
     this.loadRandomSong();
     console.log("random song id: ", this.state.track);
 
@@ -70,14 +70,14 @@ class Songs extends Component {
   //     .catch(err => console.log(err));
   // };
 
-  handleSelectSong = () => {
-    console.log("play selected song:", this.state.track);
-    API.playSelection()
+  handleSelectSong = song => {
+    console.log("play selected song:", song.title);
+    API.playSelection(song.track)
       .then(res => {
         this.setState({
-          title: this.state.title,
-          artist: this.state.artist,
-          track: this.state.track
+          title: song.title,
+          artist: song.artist,
+          track: song.track
         })
         console.log("res id: ", res.data.id);
         console.log("res artist: ", res.data.artists[0].name);
@@ -120,7 +120,7 @@ class Songs extends Component {
 
 
   render() {
-    this.loadSongs();
+    //this.loadSongs();
     return (
       <Container fluid>
         <Row>
@@ -178,7 +178,7 @@ class Songs extends Component {
                         {song.title} by {song.artist}
                       </strong>
                     </Link>
-                    <PlayBtn onClick={() => this.handleSelectSong(song._id)} />
+                    <PlayBtn onClick={() => this.handleSelectSong(song)} />
                     <DeleteBtn onClick={() => this.deleteSong(song._id)} />
                   </ListItem>
                 ))}
