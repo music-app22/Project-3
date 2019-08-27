@@ -143,7 +143,7 @@ class Songs extends Component {
             {this.state.isLoggedIn ?
               (<h1>You are logged in.</h1>) :
               <SpotifyLogin className="login-btn" clientId={"c8c67f5334914c3eb3e4099dd10da1fe"}
-                redirectUri={'https://playsongify1.herokuapp.com/'}
+                redirectUri={'https://playsongify.herokuapp.com/'}
                 onSuccess={this.onSuccess}
                 onFailure={this.onFailure} />
             }
