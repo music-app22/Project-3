@@ -143,6 +143,10 @@ onFailure = response => console.error(response);
     onSuccess={this.onSuccess}
     onFailure={this.onFailure}/>
         }
+ {/* <Jumbotron> */}
+ <Logo />
+            {/* </Jumbotron> */}
+        
             {/*  ---------------------------------------------------------------------------------------------------------------*/}
             {/* below i commented out the code that created the way you enter the songs on the list */}
 
