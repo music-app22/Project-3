@@ -22,7 +22,7 @@ class Songs extends Component {
     artist: "",
     track: "",
     isLoggedIn: false
-    
+
   }
 
   componentDidMount() {
@@ -37,7 +37,7 @@ class Songs extends Component {
       isLoggedIn: true
     }
   );
-onFailure = response => console.error(response);
+  onFailure = response => console.error(response);
 
   loadSongs = () => {
     API.getSongs()
@@ -92,7 +92,7 @@ onFailure = response => console.error(response);
         console.log("res id: ", res.data.id);
         console.log("res artist: ", res.data.artists[0].name);
         console.log("res song title: ", res.data.name);
-        
+
       }
       )
 
@@ -133,53 +133,29 @@ onFailure = response => console.error(response);
     //this.loadSongs();
     return (
       <Container fluid>
-        
-        <Row>
-          <Col size="md-6">
-            {/* <Jumbotron> */}
- <Logo />
-            {/* </Jumbotron> */}
-            
-        { this.state.isLoggedIn ? 
-        (<h1>You are logged in.</h1>):
-          <SpotifyLogin className="login-btn" clientId={"c8c67f5334914c3eb3e4099dd10da1fe"}
-    redirectUri={'https://playsongify1.herokuapp.com/'}
-    onSuccess={this.onSuccess}
-    onFailure={this.onFailure}/>
-        }
- 
- <p></p>
-            {/*  ---------------------------------------------------------------------------------------------------------------*/}
-            {/* below i commented out the code that created the way you enter the songs on the list */}
 
-            {/* <form>
-              <Input
-                value={this.state.title}
-                onChange={this.handleInputChange}
-                name="title"
-                placeholder="Song Title (required)"
-              />
-              <Input
-                value={this.state.artist}
-                onChange={this.handleInputChange}
-                name="artist"
-                placeholder="Artist (required)"
-              />
-             
-              <FormBtn
-                disabled={!(this.state.artist && this.state.title)}
-                onClick={this.handleFormSubmit}
-                
-              >
-                Search Song
-              </FormBtn>
-            </form> */}
+        <Row>
+          <Col size="md-6 sm-12">
+            {/* <Jumbotron> */}
+            <Logo />
+            {/* </Jumbotron> */}
+
+            {this.state.isLoggedIn ?
+              (<h1>You are logged in.</h1>) :
+              <SpotifyLogin className="login-btn" clientId={"c8c67f5334914c3eb3e4099dd10da1fe"}
+                redirectUri={'https://playsongify1.herokuapp.com/'}
+                onSuccess={this.onSuccess}
+                onFailure={this.onFailure} />
+            }
+            <br></br>
+            <br></br>
+
             {this.state.track && (
-              <iframe title="song player" className="player" src={"https://open.spotify.com/embed/track/" + this.state.track} width="300" height="380" frameBorder="0" allowtransparency="true" allow="encrypted-media" position="relative"></iframe>
+              <iframe title="song player" className="player" src={"https://open.spotify.com/embed/track/" + this.state.track} width="40%" height="30%" frameBorder="0" allowtransparency="true" allow="encrypted-media" position="relative"></iframe>
             )}
-            <p></p>
-            <button title="random song"  className="random-song" onClick={this.loadRandomSong}>Get new random song</button>
-            <p></p>
+            <br></br>
+            <button title="random song" className="random-song" onClick={this.loadRandomSong}>Get new random song</button>
+            <br></br>
             <button className="like-song" onClick={this.handleSaveSong}>Add to liked songs list</button>
 
 
