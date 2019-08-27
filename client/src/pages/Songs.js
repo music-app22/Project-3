@@ -139,7 +139,7 @@ onFailure = response => console.error(response);
         { this.state.isLoggedIn ? 
         (<h1>You are logged in.</h1>):
           <SpotifyLogin clientId={"c8c67f5334914c3eb3e4099dd10da1fe"}
-    redirectUri={'http://localhost:3000/songs'}
+    redirectUri={'https://playsongify1.herokuapp.com/'}
     onSuccess={this.onSuccess}
     onFailure={this.onFailure}/>
         }
