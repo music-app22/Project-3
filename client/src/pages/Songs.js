@@ -9,6 +9,7 @@ import { List, ListItem } from "../components/List";
 import { Input, FormBtn } from "../components/Form";
 import "./songs.css"
 import Logo from "../components/logo"
+import SpotifyLogin from 'react-spotify-login';
 
 // import SpotifyApi from 'node-spotify-api';
 // const spotify = new SpotifyApi(); 
@@ -19,8 +20,9 @@ class Songs extends Component {
     songs: [],
     title: "",
     artist: "",
-    track: ""
-    // track: "1cCXhTHf2lTsLhYCkQc80t" // MY SONG 
+    track: "",
+    isLoggedIn: false
+    
   }
 
   componentDidMount() {
@@ -29,6 +31,13 @@ class Songs extends Component {
     console.log("random song id: ", this.state.track);
 
   }
+
+  onSuccess = response => this.setState(
+    {
+      isLoggedIn: true
+    }
+  );
+onFailure = response => console.error(response);
 
   loadSongs = () => {
     API.getSongs()
@@ -127,9 +136,13 @@ class Songs extends Component {
         
         <Row>
           <Col size="md-6">
-            {/* <Jumbotron> */}
-            <Logo />
-            {/* </Jumbotron> */}
+        { this.state.isLoggedIn ? 
+        (<h1>You are logged in.</h1>):
+          <SpotifyLogin clientId={"c8c67f5334914c3eb3e4099dd10da1fe"}
+    redirectUri={'http://localhost:3000/songs'}
+    onSuccess={this.onSuccess}
+    onFailure={this.onFailure}/>
+        }
             {/*  ---------------------------------------------------------------------------------------------------------------*/}
             {/* below i commented out the code that created the way you enter the songs on the list */}
 
