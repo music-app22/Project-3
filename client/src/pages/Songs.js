@@ -136,17 +136,19 @@ onFailure = response => console.error(response);
         
         <Row>
           <Col size="md-6">
+            {/* <Jumbotron> */}
+ <Logo />
+            {/* </Jumbotron> */}
+            
         { this.state.isLoggedIn ? 
         (<h1>You are logged in.</h1>):
-          <SpotifyLogin clientId={"c8c67f5334914c3eb3e4099dd10da1fe"}
+          <SpotifyLogin className="login-btn" clientId={"c8c67f5334914c3eb3e4099dd10da1fe"}
     redirectUri={'https://playsongify1.herokuapp.com/'}
     onSuccess={this.onSuccess}
     onFailure={this.onFailure}/>
         }
- {/* <Jumbotron> */}
- <Logo />
-            {/* </Jumbotron> */}
-        
+ 
+ <p></p>
             {/*  ---------------------------------------------------------------------------------------------------------------*/}
             {/* below i commented out the code that created the way you enter the songs on the list */}
 
